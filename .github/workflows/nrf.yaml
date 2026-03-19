@@ -1,0 +1,7 @@
+name: Firmware for nrf52840 dongle
+on: push
+jobs:
+  build:
+    runs-on: debian-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
