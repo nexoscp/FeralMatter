@@ -5,3 +5,8 @@ jobs:
     runs-on: debian-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: sudo apt update
+      - run: sudo apt install -y python3-pip git cmake ninja-build
+      - run: pip3 install --user -U west --break-system-packages
+      - run: curl https://files.nordicsemi.com/artifactory/swtools/external/nrfutil/executables/x86_64-unknown-linux-gnu/nrfutil -o nrfutil
+      - run: chmod +x nrfutil
