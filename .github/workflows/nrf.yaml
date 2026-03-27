@@ -2,7 +2,7 @@ name: Firmware for nrf52840 dongle
 on: push
 jobs:
   build:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: sudo apt update
@@ -26,3 +26,8 @@ jobs:
       - run: nrfutil toolchain-manager launch # --shell
       # - run: west build -b nrf52840dongle/nrf52840 -p
       # - run: nrfutil pkg generate --hw-version 52 --sd-req=0x00 --application build/merged.hex --application-version 1 otbr-rcp.zip
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v4
+        with:
+          name: blob
+          path: foo
