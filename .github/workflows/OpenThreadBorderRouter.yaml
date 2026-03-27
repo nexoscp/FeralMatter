@@ -14,8 +14,8 @@ jobs:
       REST_API: 1
       INFRA_IF_NAME: eth0
     steps:
-      - run: sudo apt update
-      - run: sudo apt install -y git
+     # - run: sudo apt update
+     # - run: sudo apt install -y git
 #      - run: git clone https://github.com/openthread/ot-br-posix.git --depth 1
       - uses: actions/checkout@v6
         with:
@@ -32,10 +32,10 @@ jobs:
     #  - run: export WEB_GUI=1
     #  - run: export REST_API=1
     #  - run: export INFRA_IF_NAME=eth0
-      - run: ./script/bootstrap
-      - run: ./script/setup
+      - run: bash ./script/bootstrap
+      - run: bash ./script/setup
       - name: 'Upload Artifact'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: blob
           path: foo
