@@ -16,7 +16,11 @@ jobs:
     steps:
       - run: sudo apt update
       - run: sudo apt install -y git
-      - run: git clone https://github.com/openthread/ot-br-posix.git --depth 1
+#      - run: git clone https://github.com/openthread/ot-br-posix.git --depth 1
+      - uses: actions/checkout@v6
+        with:
+          repository: 'openthread/ot-br-posix'
+          fetch-depth: '1'
       - run: cd ot-br-posix
     #  - run: export BACKBONE_ROUTER=1
     #  - run: export BORDER_ROUTING=1
