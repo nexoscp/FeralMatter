@@ -21,6 +21,7 @@ jobs:
         with:
           repository: 'openthread/ot-br-posix'
           fetch-depth: '1'
+          path: ot-br-posix
       - run: cd ot-br-posix
     #  - run: export BACKBONE_ROUTER=1
     #  - run: export BORDER_ROUTING=1
