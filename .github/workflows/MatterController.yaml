@@ -17,7 +17,7 @@ jobs:
           fetch-depth: '1'
           path: connectedhomeip
       - run: cd connectedhomeip
-      - run: python ./scripts/checkout_submodules.py --shallow --platform  linux
+      - run: cd connectedhomeip; python ./scripts/checkout_submodules.py --shallow --platform  linux
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v7
         with:

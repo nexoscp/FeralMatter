@@ -32,8 +32,8 @@ jobs:
     #  - run: export WEB_GUI=1
     #  - run: export REST_API=1
     #  - run: export INFRA_IF_NAME=eth0
-      - run: bash ./script/bootstrap
-      - run: bash ./script/setup
+      - run: cd ot-br-posix; bash ./script/bootstrap
+      - run: cd ot-br-posix; bash ./script/setup
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v7
         with:
