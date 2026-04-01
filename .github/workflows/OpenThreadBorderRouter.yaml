@@ -14,9 +14,6 @@ jobs:
       REST_API: 1
       INFRA_IF_NAME: eth0
     steps:
-     # - run: sudo apt update
-     # - run: sudo apt install -y git
-#      - run: git clone https://github.com/openthread/ot-br-posix.git --depth 1
       - uses: actions/checkout@v6
         with:
           repository: 'openthread/ot-br-posix'
@@ -31,7 +28,7 @@ jobs:
           mkdir -p .debpkg/usr/bin
           cp /usr/sbin/otbr-agent .debpkg/usr/bin/otbr-agent
           cp /usr/sbin/ot-ctl .debpkg/usr/bin/ot-ctl
-          cp usr/sbin/otbr-web .debpkg/usr/bin/otbr-web
+          cp /usr/sbin/otbr-web .debpkg/usr/bin/otbr-web
           mkdir -p .debpkg/etc/dbus-1/system.d/
           cp  /etc/dbus-1/system.d/otbr-agent.conf  .debpkg/etc/dbus-1/system.d/otbr-agent.conf
           mkdir -p .debpkg/usr/lib/systemd/system/
