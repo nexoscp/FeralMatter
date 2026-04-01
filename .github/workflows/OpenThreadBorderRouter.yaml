@@ -31,6 +31,16 @@ jobs:
           mkdir -p .debpkg/usr/bin
           cp /usr/sbin/otbr-agent .debpkg/usr/bin/otbr-agent
           cp /usr/sbin/ot-ctl .debpkg/usr/bin/ot-ctl
+          cp usr/sbin/otbr-web .debpkg/usr/bin/otbr-web
+          mkdir -p .debpkg/etc/dbus-1/system.d/
+          cp  /etc/dbus-1/system.d/otbr-agent.conf  .debpkg/etc/dbus-1/system.d/otbr-agent.conf
+          mkdir -p .debpkg/usr/lib/systemd/system/
+          cp /usr/lib/systemd/system/otbr-agent.service .debpkg/usr/lib/systemd/system/otbr-agent.service
+          cp /usr/lib/systemd/system/otbr-web.service .debpkg/usr/lib/systemd/system/otbr-web.service
+          mkdir -p .debpkg/etc/default/
+          cp /etc/default/otbr-agent .debpkg/etc/default/otbr-agent
+          mkdir -p .debpkg/usr/share/otbr-web/frontend/
+          cp -r /usr/share/otbr-web/frontend/ .debpkg/usr/share/otbr-web/frontend/
       - uses: jiro4989/build-deb-action@v4
         with:
             package: OpenThreadBorderRouter
