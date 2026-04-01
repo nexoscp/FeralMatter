@@ -14,28 +14,35 @@ jobs:
       REST_API: 1
       INFRA_IF_NAME: eth0
     steps:
-     # - run: sudo apt update
-     # - run: sudo apt install -y git
-#      - run: git clone https://github.com/openthread/ot-br-posix.git --depth 1
       - uses: actions/checkout@v6
         with:
           repository: 'openthread/ot-br-posix'
           fetch-depth: '1'
           path: ot-br-posix
-      - run: cd ot-br-posix
-    #  - run: export BACKBONE_ROUTER=1
-    #  - run: export BORDER_ROUTING=1
-    #  - run: export NAT64=0
-    #  - run: export DNS64=0
-    #  - run: export DHCPV6_PD=0
-    #  - run: export DHCPV6_PD_REF=0
-    #  - run: export WEB_GUI=1
-    #  - run: export REST_API=1
-    #  - run: export INFRA_IF_NAME=eth0
-      - run: cd ot-br-posix; bash ./script/bootstrap
-      - run: cd ot-br-posix; bash ./script/setup
+      - run: bash ./script/bootstrap
+        working-directory: ot-br-posix
+      - run: bash ./script/setup
+        working-directory: ot-br-posix
+      - name: copy all the things
+        run: |
+          mkdir -p .debpkg/usr/bin
+          copy /usr/sbin/otbr-agent .debpkg/usr/sbin/otbr-agent
+          copy /usr/sbin/ot-ctl .debpkg/usr/sbin/ot-ctl
+      - uses: jiro4989/build-deb-action@v4
+        with:
+            package: OpenThreadBorderRouter
+            package_root: .debpkg
+            maintainer: nobody
+            version: ${{ github.ref }} # refs/tags/v*.*.*
+            arch: 'amd64' # optional
+            depends: '' # optional
+            pre_depends: 'libc6 (>= 2.2.1)' # optional
+            desc: 'Open Thread Border Router' # optional
+            homepage: 'https://github.com/openthread/ot-br-posix/'
+            section: 'unknown'   # optional
+            priority: 'required' # optional
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v7
         with:
-          name: blob
-          path: foo
+          name: DebianPackage
+          path: '*.deb'
