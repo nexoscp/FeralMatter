@@ -36,7 +36,7 @@ jobs:
             package: OpenThreadBorderRouter
             package_root: .debpkg
             maintainer: nobody
-            version: ${{ github.ref }} # refs/tags/v*.*.*
+            version: '1'
             arch: 'amd64' # optional
             depends: '' # optional
             pre_depends: 'libc6 (>= 2.2.1)' # optional
